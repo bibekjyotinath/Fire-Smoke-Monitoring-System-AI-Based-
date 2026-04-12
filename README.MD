@@ -146,8 +146,8 @@ Output (Alerts, Images, Video Clips, Dashboard)
 ## Installation
 
 ```bash
-git clone <your-repo-url>
-cd <repo>
+git clone https://github.com/bibekjyotinath/Fire-Smoke-Monitoring-System-AI-Based-.git
+cd Fire-Smoke-Monitoring-System-AI-Based-
 pip install -r requirements.txt
 
 ---
