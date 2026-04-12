@@ -6,7 +6,7 @@
 
 An end-to-end **AI-powered safety monitoring system** that detects **fire, smoke, and human presence** in real-time video streams and generates **mission-level decisions** with alerts, severity scoring, and visual evidence.
 
----
+## This system converts raw visual perception into **mission-aware decisions with contextual scene understanding**, not just object detection.
 
 ## System Pipeline
 
@@ -38,31 +38,36 @@ Output (Alerts, Images, Video Clips, Dashboard)
 
 ---
 
-## Project Structure
+## Assumptions
 
-.
-├── src
-├─├── main.py
-├─├── utils/
-│ ├── detection.py
-│ ├── awareness.py
-│ ├── image_process.py
-│ ├── schema.py
-│
-├─├── manager/
-│ ├── rule.py
-│ ├── score.py
-│
-├─├── reader/
-│ ├── reader_factory.py
-│
-├─├── dashboard/
-│ ├── dashboard.py
-│
-├── Inference/
-│ ├── images/
-│ ├── videos/
-│ ├── json/events.json
+### Robot Platform
+
+- Assumed a quadruped robot (robodog) for inspection tasks
+- Chosen due to stability in industrial environments and ability to navigate uneven terrain
+
+### Target Environment
+
+- Warehouse / factory inspection setting
+- Includes zones such as conveyor belts, storage areas, and utility corridors
+
+### Sensors
+
+- RGB camera used as primary sensor
+- No thermal or depth sensors used (can be extended in production)
+
+### Simulation vs Real Deployment
+
+- System uses prerecorded video (YouTube / sample footage)
+- Simulates real-world inspection scenarios
+- Designed to be deployable on live camera feeds
+
+### Zone Definition
+
+- Frame is divided into:
+  - left_zone
+  - center_zone
+  - right_zone
+- Used for generating scene-level contextual summaries
 
 ---
 
