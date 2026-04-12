@@ -38,6 +38,12 @@ Output (Alerts, Images, Video Clips, Dashboard)
 
 ---
 
+## 🏗️ Architecture
+
+![Architecture](docs/architecture.png)
+
+---
+
 ## Assumptions
 
 ### Robot Platform
