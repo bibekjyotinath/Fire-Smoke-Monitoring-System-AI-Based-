@@ -12,7 +12,7 @@ from loguru import logger
 from ultralytics.models import YOLO
 
 from reader.reader_factory import ReaderFactory
-from utils.awareness import map_detections_to_original
+from utils.awareness import get_zone, map_detections_to_original
 from utils.detection import (
     fire_smoke_detection,
     person_detection,
@@ -166,6 +166,18 @@ def main(args):
             original_frame.shape
         )
 
+        # SCENE SUMMARY
+        scene_summaries = []
+
+        for d in mapped_detections:
+            zone = get_zone(d["bbox"], original_frame.shape)
+            summary = f"{d['type']} detected in {zone}"
+            scene_summaries.append(summary)
+
+        scene_summary = "; ".join(scene_summaries) \
+        if scene_summaries else "No hazards detected"
+
+
         # MISSION
         try:
             mission_output = mission_manager_fn(
@@ -269,6 +281,21 @@ def main(args):
             logger.error(f"Video write failed: {e}")
             recording = False
 
+        # MISSION CONFIDENCE
+        weights = {
+            "fire": 3,
+            "smoke": 2,
+            "person": 1
+        }
+
+        weighted_sum = sum(d["conf"] * weights.get(d["type"], 1) for d in mapped_detections)
+        total_weight = sum(weights.get(d["type"], 1) for d in mapped_detections)
+
+        if total_weight == 0:
+            mission_confidence = 0.0
+        else:
+            mission_confidence = weighted_sum / total_weight
+
         # EVENT LOG
         if mission_output:
             event_id = f"{severity}_{idx}_{int(time.time() * 1000)}"
@@ -278,6 +305,9 @@ def main(args):
                 "frame_id": idx,
                 "timestamp": time.time(),
                 "severity": severity,
+                "scene_summary": scene_summary,
+                "zones": list(set([get_zone(d["bbox"], original_frame.shape) for d in mapped_detections])),
+                "confidence": mission_confidence,
                 "alert": mission_output.get("alert"),
                 "action": mission_output.get("action"),
                 "details": mission_output.get("details", []),

@@ -2,6 +2,34 @@ import math
 from typing import Any, Dict, List, Tuple
 
 
+# ZONE DISTRIBUTION
+def get_zone(
+    bbox: Tuple[int, int, int, int],
+    frame_shape: Tuple[int, int, int]
+) -> str:
+    """
+    Determine zone based on bbox center location.
+
+    Args:
+        - bbox (Tuple[int, int, int, int]): Bounding box data from detection.
+        - frame_shape (Tuple[int, int, int]): Original image shape.
+
+    Returns:
+        - returns zone (str): left_zone | center_zone | right_zone
+    """
+    x1, y1, x2, y2 = bbox
+    h, w, _ = frame_shape
+
+    x_center = (x1 + x2) // 2
+
+    if x_center < w / 3:
+        return "left_zone"
+    elif x_center < 2 * w / 3:
+        return "center_zone"
+    else:
+        return "right_zone"
+
+
 # CORE GEOMETRY FUNCTIONS
 def map_box_to_original(
     box: Tuple[int, int, int, int],
