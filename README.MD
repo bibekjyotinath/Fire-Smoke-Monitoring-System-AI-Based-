@@ -131,6 +131,8 @@ Output (Alerts, Images, Video Clips, Dashboard)
 - CSV export
 - Auto-refresh
 
+![Architecture](docs/NTT_Data-Assessment_Dashboard.png)
+
 ---
 
 ## Visualization
