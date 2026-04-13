@@ -201,6 +201,7 @@ This enables the system to move beyond detection and provide meaningful situatio
     "video_path": "/home/sagarnath/Workspace/NTT_Assessment/Inference/videos/CRITICAL_Clip_82_1776095229762_h264.mp4"
   },
 
+```
 ---
 
 ## Installation
@@ -209,7 +210,7 @@ This enables the system to move beyond detection and provide meaningful situatio
 git clone https://github.com/bibekjyotinath/Fire-Smoke-Monitoring-System-AI-Based-.git
 cd Fire-Smoke-Monitoring-System-AI-Based-
 pip install -r requirements.txt
-
+```
 ---
 
 ## Run Pipeline
