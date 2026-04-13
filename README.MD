@@ -178,6 +178,7 @@ This enables the system to move beyond detection and provide meaningful situatio
 
 ## Sample Mission Output
 
+```json
 {
     "event_id": "CRITICAL_82_1776095229770",
     "frame_id": 82,
@@ -204,6 +205,7 @@ This enables the system to move beyond detection and provide meaningful situatio
 
 ## Installation
 
+```bash
 git clone https://github.com/bibekjyotinath/Fire-Smoke-Monitoring-System-AI-Based-.git
 cd Fire-Smoke-Monitoring-System-AI-Based-
 pip install -r requirements.txt
