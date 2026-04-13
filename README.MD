@@ -190,6 +190,7 @@ This enables the system to move beyond detection and provide meaningful situatio
     "image_path": "/home/sagarnath/Workspace/NTT_Assessment/Inference/images/CRITICAL_Frame_82_1776095229758.jpg",
     "video_path": "/home/sagarnath/Workspace/NTT_Assessment/Inference/videos/CRITICAL_Clip_82_1776095229762_h264.mp4"
   },
+
 ---
 
 ## Scaling to Production
