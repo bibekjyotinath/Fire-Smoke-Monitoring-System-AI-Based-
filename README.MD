@@ -191,7 +191,7 @@ This enables the system to move beyond detection and provide meaningful situatio
     "video_path": "/home/sagarnath/Workspace/NTT_Assessment/Inference/videos/CRITICAL_Clip_82_1776095229762_h264.mp4"
   },
 ---
-```markdown
+
 ## Scaling to Production
 
 - Streaming ingestion using Kafka or message queues
