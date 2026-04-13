@@ -38,7 +38,7 @@ Output (Alerts, Images, Video Clips, Dashboard)
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ![Architecture](docs/architecture.png)
 
@@ -142,6 +142,63 @@ Output (Alerts, Images, Video Clips, Dashboard)
 | Person | 🟢 Green  |
 | Fire   | 🔴 Red    |
 | Smoke  | 🟠 Orange |
+
+---
+
+## Limitations
+
+- Smoke detection can be affected by lighting conditions and may be confused with bright regions or haze.
+- Fire detection may be less accurate in overexposed or low-light scenarios.
+- Zone mapping is based on image coordinates and not real-world calibrated positions.
+- The system currently uses only RGB input; additional sensors like thermal cameras can improve robustness.
+- Temporal smoothing may introduce slight delays in triggering alerts.
+
+---
+
+## Scene Understanding
+
+The system generates contextual summaries such as:
+
+- "Fire detected in center_zone"
+- "Person near smoke in left_zone"
+
+This enables the system to move beyond detection and provide meaningful situational awareness.
+
+---
+
+## Sample Mission Output
+
+```json
+{
+    "event_id": "CRITICAL_82_1776095229770",
+    "frame_id": 82,
+    "timestamp": 1776095229.7701561,
+    "severity": "CRITICAL",
+    "scene_summary": "person detected in left_zone; fire detected in left_zone",
+    "zones": [
+      "left_zone"
+    ],
+    "confidence": 0.7926347404718399,
+    "alert": "EXTREME_SAFETY_RISK",
+    "action": "IMMEDIATE_EVACUATION",
+    "details": [
+      {
+        "person_id": 1,
+        "event": "inside_fire_zone"
+      }
+    ],
+    "image_path": "/home/sagarnath/Workspace/NTT_Assessment/Inference/images/CRITICAL_Frame_82_1776095229758.jpg",
+    "video_path": "/home/sagarnath/Workspace/NTT_Assessment/Inference/videos/CRITICAL_Clip_82_1776095229762_h264.mp4"
+  },
+---
+```markdown
+## Scaling to Production
+
+- Streaming ingestion using Kafka or message queues
+- Model serving via APIs (FastAPI / Triton)
+- Asynchronous processing pipelines
+- Monitoring using Prometheus and Grafana
+- Integration with alerting systems (alarms, notifications)
 
 ---
 
